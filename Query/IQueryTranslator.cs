@@ -3,7 +3,7 @@
 namespace SubLight.Query
 {
     public interface IQueryTranslator<TResult>
-        where TResult : class
+        where TResult : IQueryResult
     {
         TResult Translate(Expression expression);
     }
