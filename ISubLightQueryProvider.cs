@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 
 namespace SubLight
 {
-    public interface ISubLighQueryProvider
+    public interface ISubLightQueryProvider
         : IQueryProvider
     {
         

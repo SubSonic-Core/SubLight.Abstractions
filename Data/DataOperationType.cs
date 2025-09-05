@@ -1,4 +1,7 @@
-﻿[Flags]
+﻿
+namespace SubLight.Data;
+
+[Flags]
 public enum DataOperationType
 {
     Insert = 1 << 0,
