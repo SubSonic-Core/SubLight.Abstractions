@@ -1,9 +1,13 @@
-﻿namespace SubLight
+﻿using SubLight.Query;
+using System.Linq.Expressions;
+
+namespace SubLight
 {
     public interface ISubLighQueryProvider
         : IQueryProvider
     {
-        // Provider-specific query translation
-        string Translate(IQueryTranslator translator);
+        
+        TResult Translate<TResult>(Expression expression, IQueryTranslator<TResult> translator)
+            where TResult: IQueryResult;
     }
 }
