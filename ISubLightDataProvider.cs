@@ -19,5 +19,5 @@ public interface ISubLightDataProvider<TEntity>
 public interface ISubLightBulkDataProvider<TEntity>
     : ISubLightDataProvider<TEntity>
 {
-	ValueTask<BulkOperationResult> BulkPersistAsync(BulkDataEnvelope<TEntity> bulkEnvelope, CancellationToken cancellationToken = default);
+	ValueTask<BulkOperationResult<TEntity>> BulkPersistAsync(BulkDataEnvelope<TEntity> bulkEnvelope, CancellationToken cancellationToken = default);
 }

@@ -1,8 +1,8 @@
 ﻿namespace SubLight.Data
 {
-    public record BulkOperationResult(
+    public record BulkOperationResult<TEntity>(
         int SuccessCount, 
-        IReadOnlyList<DataKey> FailedKeys, 
-        IReadOnlyDictionary<DataKey, string>? ErrorMessages = null
+        IReadOnlyList<DataKey<TEntity>> FailedKeys, 
+        IReadOnlyDictionary<DataKey<TEntity>, string>? ErrorMessages = null
     );
 }
