@@ -8,4 +8,8 @@
     <RootNamespace>SubLight</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Modeling\" />
+  </ItemGroup>
+
 </Project>

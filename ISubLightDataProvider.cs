@@ -3,15 +3,21 @@ using SubLight.Data;
 
 namespace SubLight;
 
-public interface ISubLightDataProvider
+public interface ISubLightDataProvider<TEntity>
 {
-	ValueTask<object?> RetrieveAsync(DataKey key, CancellationToken cancellationToken = default);
-	ValueTask<bool> PersistAsync(DataEnvelope envelope, CancellationToken cancellationToken = default);
-	ValueTask<bool> DeleteAsync(DataKey key, CancellationToken cancellationToken = default);
+    /// <summary>
+    /// Retrieves the data associated with the specified key.
+    /// </summary>
+    /// <param name="key"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    ValueTask<TEntity?> RetrieveAsync(DataKey<TEntity> key, CancellationToken cancellationToken = default);
+	ValueTask<bool> PersistAsync(DataEnvelope<TEntity> envelope, CancellationToken cancellationToken = default);
+	ValueTask<bool> DeleteAsync(DataKey<TEntity> key, CancellationToken cancellationToken = default);
 }
 
-public interface ISubLightBulkDataProvider
-	: ISubLightDataProvider
+public interface ISubLightBulkDataProvider<TEntity>
+    : ISubLightDataProvider<TEntity>
 {
-	ValueTask<BulkOperationResult> BulkPersistAsync(BulkDataEnvelope bulkEnvelope, CancellationToken cancellationToken = default);
+	ValueTask<BulkOperationResult> BulkPersistAsync(BulkDataEnvelope<TEntity> bulkEnvelope, CancellationToken cancellationToken = default);
 }

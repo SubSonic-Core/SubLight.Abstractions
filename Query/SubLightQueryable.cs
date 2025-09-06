@@ -1,25 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SubLight.Query
 {
     public class SubLightQueryable<TEntity>
-        : IQueryable<TEntity>
+        : IQueryable<TEntity> where TEntity : class
     {
         public Expression Expression { get; }
-        public ISubLighQueryProvider Provider { get; }
+        public ISubLightQueryProvider Provider { get; }
 
-        public SubLightQueryable(ISubLighQueryProvider provider)
+        public SubLightQueryable(ISubLightQueryProvider provider)
             : this(provider, Expression.Constant(typeof(TEntity)))
         {
         }
 
-        public SubLightQueryable(ISubLighQueryProvider provider, Expression expression)
+        public SubLightQueryable(ISubLightQueryProvider provider, Expression expression)
         {
             Provider = provider ?? throw new ArgumentNullException(nameof(provider));
             Expression = expression ?? throw new ArgumentNullException(nameof(expression));

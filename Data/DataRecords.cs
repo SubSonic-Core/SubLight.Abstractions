@@ -1,6 +1,8 @@
-﻿namespace SubLight.Data
+﻿using System.Linq.Expressions;
+
+namespace SubLight.Data
 {
-    public record DataKey(string EntityType, IReadOnlyDictionary<string, object> KeyValues);
-    public record DataEnvelope(DataKey Key, object Payload, DataOperationType DataOperation = DataOperationType.Upsert);
-    public record BulkDataEnvelope(IReadOnlyList<DataEnvelope> Envelopes);
+    public record DataKey<TEntity>(IReadOnlyDictionary<string, object> KeyValues);    
+    public record DataEnvelope<TEntity>(DataKey<TEntity> Key, object Payload, DataOperationType DataOperation = DataOperationType.Upsert);
+    public record BulkDataEnvelope<TEntity>(IReadOnlyList<DataEnvelope<TEntity>> Envelopes);
 }
